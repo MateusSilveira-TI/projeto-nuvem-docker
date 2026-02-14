@@ -1,20 +1,32 @@
-# Projeto Final: API de Produtos Containerizada 🐳
+Projeto Final: API de Produtos Containerizada 🐳
+Este projeto é uma API RESTful simples em Node.js para cadastro de produtos, focada em demonstrar conceitos de Computação em Nuvem como containerização, exposição de portas e volumes persistentes.
 
-Este projeto simula uma API RESTful para cadastro de produtos, rodando em container Docker com persistência de dados em volumes.
-Desenvolvido como requisito da disciplina de Computação em Nuvem.
+🚀 Tecnologias
+Node.js & Express
 
-## 📋 Como executar
+Docker
 
-### 1. Construir a Imagem
-No terminal, dentro da pasta do projeto:
-```bash
+Docker Volumes (Persistência no Host)
+
+📋 Como Executar
+1. Construir a Imagem
+No terminal, dentro da pasta do projeto, execute o comando abaixo para criar a imagem:
+
+Bash
 docker build -t api-produtos .
+2. Rodar o Container com Volume
+Este comando mapeia a porta 3000 e conecta a pasta /data do container à pasta meus_dados no seu Windows (Host), garantindo que os dados não sejam perdidos ao desligar o container.
 
-## No terminal roda o comando abaixo
-docker run -p 3000:3000 -v $(pwd)/meus_dados:/data api-produtos
+No Windows (PowerShell):
 
+Bash
+docker run -p 3000:3000 -v ${PWD}/meus_dados:/data api-produtos
+🧪 Como Testar
+Após rodar o container, você pode validar a aplicação:
 
-Como Testar
-No Navegador 
-Listar produtos: http://localhost:3000/produtos
+Listar Produtos (Navegador):
+Acesse: http://localhost:3000/produtos
+Deverá retornar um array vazio [].
 
+Verificar Persistência (Volume):
+Ao salvar um produto, um arquivo chamado produtos.json será criado automaticamente na sua pasta local meus_dados
